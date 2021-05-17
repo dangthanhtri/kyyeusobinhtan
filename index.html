@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./images/favicon-lotus.ico" type="image/x-icon">
+  <!-- Box icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+
+  <!-- Custom StyleSheet -->
+  <link rel="stylesheet" href="./css/styles.css" />
+  <title>Kỷ Yếu Số - Bình Tân</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header id="home" class="header">
+    <!-- Navigation -->
+    <nav class="nav">
+      <div class="navigation container">
+        <div class="logo">
+          <a href="index.html" onclick="openMainScr()">
+            <img src="./images/lotus.png" style="width:60px">
+          </a>
+        </div>
+
+        <div class="menu">
+          <div class="top-nav">
+            <div class="logo">
+              <h1>KỶ YẾU BÌNH TÂN</h1>
+            </div>
+            <div class="close">
+              <i class="bx bx-x"></i>
+            </div>
+          </div>
+
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="#home" class="nav-link scroll-link" onclick="openMainScr()">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a  class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hamburger">
+          <i class="bx bx-menu"></i>
+        </div>
+      </div>
+    </nav>
+    <img src="./images/main-banner.jpg" style="width:100vw">
+  </header>
+
+  <!-- Main -->
+  <main>
+    <!-- Featured -->
+    <section id="mainScr" class="section featured" >
+      <div class="title">
+        <h1>Danh Mục Tuyên Dương</h1>
+      </div>
+
+      <div class="product-center container">
+        <div class="product">
+          <div class="product-header">
+            <img src="./images/person.PNG"  alt="">
+          </div>
+          <div class="product-footer">
+            <a href="#">
+              <h3><span id="totalPerson"></span> CÁ NHÂN</h3>
+            </a>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+            <a class="btn" onclick="openPersonScr()">Tìm Kiếm Cá Nhân</a>
+          </div>
+        </div>
+        <div class="product">
+          <div class="product-header">
+            <img src="./images/group.PNG" alt="">
+          </div>
+          <div class="product-footer">
+            <a href="#">
+              <h3><span id="totalTeam"></span> TẬP THỂ</h3>
+            </a>
+            <div class="rating">
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+              <i class="bx bxs-star"></i>
+            </div>
+            <a class="btn" onclick="openTeamScr()">Tìm Kiếm Tập Thể</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- Trang thông tin chi tiết Cá Nhân-->
+     <section id="personScr" class="section product-detail" style="display: none;">
+
+      <form class="form">
+        <input id="PersonId" type="text" placeholder="Nhập tên...">
+      </form>
+
+      <div class="details container-md">
+        <div class="left">
+          <div class="main">
+            <img id="PersonImg" src="./images/person.PNG" alt="">
+          </div>
+        </div>
+        <div class="right">
+          <span>Tuyên Dương Cá Nhân</span>
+          <hr size="4" width="90%" color="#243a6f"> 
+          <h2 id="PersonName" style="margin-top: 1rem;">Họ và Tên</h2>
+          <h3 id="PersonYOB" >Năm sinh</h2>
+          <h3 id="PersonPosition">Chức vụ</h2>
+          <div id="PersonAction" class="price">Khen thưởng</div>
+          <p id="PersonTopic">Mô hình giải pháp</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trang thông tin chi tiết Tập thể -->
+    <section id="teamScr" class="section product-detail" style="display: none;">
+
+      <form class="form">
+        <input id="TeamId" type="text" placeholder="Nhập tên...">
+      </form>
+
+      <div class="details container-md">
+        <div class="left">
+          <div class="main">
+            <img id="TeamImg" src="./images/group.PNG" alt="">
+          </div>
+        </div>
+        <div class="right">
+          <span>Tuyên Dương Tập Thể</span>
+          <hr size="4" width="90%" color="#243a6f">  
+          <h2 id="TeamName" style="margin-top: 1rem;">Tập Thể</h1>
+          <p id="TeamTopic" style="color: #ff7c9c; text-align: justify;">Thành Tích</p>
+        </div>
+      </div>
+    </section>
+
+  <!-- Footer -->
+  <footer id="footer" class="section footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-center">
+          <h3>LIÊN HỆ</h3>
+          <div>
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+            </span>
+            Ban Tuyên Giáo - Quận Ủy Bình Tân
+          </div>
+          <div>
+            <span>
+              <i class="far fa-envelope"></i>
+            </span>
+            Email: binhtan@tphcm.gov.vn
+          </div>
+          <div>
+            <span>
+              <i class="fas fa-phone"></i>
+            </span>
+            (028) 38 750 307
+          </div>
+          <div>
+            <span>
+              <i class="far fa-paper-plane"></i>
+            </span>
+            521 Kinh Dương Vương, Phường An Lạc, Quận Bình Tân, Tp. Hồ Chí Minh
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <!-- End Footer -->
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <!-- Custom Script -->
+  <script src="./js/product-detail.js"></script>
+  <script src="./js/index.js"></script>
+</body>
+
+</html>
