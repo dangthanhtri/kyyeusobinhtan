@@ -841,6 +841,17 @@ form span {
   margin-top: 1rem;
 }
 
+.btnSearch {
+  background: #59b210;
+  color: #fff;
+  padding: 1.8rem;
+  border-radius: 0.5rem;
+  height: 5rem;
+  width: 20%;
+  margin-top: 1rem;
+  text-align: center;
+}
+
 
 @media only screen and (max-width: 996px) {
   .product-detail .left {

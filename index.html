@@ -22,7 +22,7 @@
     <nav class="nav">
       <div class="navigation container">
         <div class="logo">
-          <a href="index.html" onclick="openMainScr()">
+          <a onclick="openMainScr()">
             <img src="./images/lotus.png" style="width:60px">
           </a>
         </div>
@@ -44,14 +44,11 @@
             <li class="nav-item">
               <a class="nav-link">Giới thiệu</a>
             </li>
-            <li class="nav-item">
-              <a  class="nav-link icon"><i class="bx bx-shopping-bag"></i></a>
-            </li>
           </ul>
         </div>
 
         <div class="hamburger">
-          <i class="bx bx-menu"></i>
+          <i class='bx bxs-message-square-add' ></i>
         </div>
       </div>
     </nav>
@@ -117,7 +114,7 @@
         <div class="right">
           <form class="form">
             <input id="PersonId" type="text" placeholder="Nhập tên...">
-            <button id="PersonSubmit" class="fa fa-check"></button>
+            <a class="btnSearch fa fa-check" id="PersonSubmit"></a>
           </form>
           <span>Tuyên Dương Cá Nhân</span>
           <hr size="4" width="90%" color="#243a6f"> 
@@ -141,7 +138,7 @@
         <div class="right">
           <form class="form">
             <input id="TeamId" type="text" placeholder="Nhập tên...">
-            <button id="TeamSubmit" class="fa fa-check"></button>
+            <a class="btnSearch fa fa-check" id="TeamSubmit"></a>
           </form>
           <span>Tuyên Dương Tập Thể</span>
           <hr size="4" width="90%" color="#243a6f">  
