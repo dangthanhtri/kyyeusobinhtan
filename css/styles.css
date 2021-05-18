@@ -116,10 +116,15 @@ li {
 .nav-list {
   display: flex;
   align-items: center;
+  
 }
 
-.nav-item:not(:last-child) {
+.nav-item {
   margin-right: 0.5rem;
+  margin-left: 1rem;
+  font-size: 20px;
+  margin-top: 1rem;
+  
 }
 
 .nav-link:link,

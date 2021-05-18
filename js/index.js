@@ -1,4 +1,3 @@
-/*
 const menu = document.querySelector(".menu");
 const navOpen = document.querySelector(".hamburger");
 const navClose = document.querySelector(".close");
@@ -31,7 +30,7 @@ window.addEventListener("scroll", () => {
     navBar.classList.remove("fix-nav");
   }
 });
-*/
+
 // Scroll To
 /*
 const links = [...document.querySelectorAll(".scroll-link")];
