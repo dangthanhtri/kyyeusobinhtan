@@ -8,6 +8,7 @@
   <link rel="shortcut icon" href="./images/favicon-lotus.ico" type="image/x-icon">
   <!-- Box icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- Custom StyleSheet -->
   <link rel="stylesheet" href="./css/styles.css" />
@@ -107,11 +108,6 @@
 
      <!-- Trang thông tin chi tiết Cá Nhân-->
      <section id="personScr" class="section product-detail" style="display: none;">
-
-      <form class="form">
-        <input id="PersonId" type="text" placeholder="Nhập tên...">
-      </form>
-
       <div class="details container-md">
         <div class="left">
           <div class="main">
@@ -119,24 +115,23 @@
           </div>
         </div>
         <div class="right">
+          <form class="form">
+            <input id="PersonId" type="text" placeholder="Nhập tên...">
+            <button id="PersonSubmit" class="fa fa-check"></button>
+          </form>
           <span>Tuyên Dương Cá Nhân</span>
           <hr size="4" width="90%" color="#243a6f"> 
           <h2 id="PersonName" style="margin-top: 1rem;">Họ và Tên</h2>
           <h3 id="PersonYOB" >Năm sinh</h2>
           <h3 id="PersonPosition">Chức vụ</h2>
-          <div id="PersonAction" class="price">Khen thưởng</div>
-          <p id="PersonTopic">Mô hình giải pháp</p>
+          <div id="PersonAction" class="price"></div>
+          <p id="PersonTopic"></p>
         </div>
       </div>
     </section>
 
     <!-- Trang thông tin chi tiết Tập thể -->
     <section id="teamScr" class="section product-detail" style="display: none;">
-
-      <form class="form">
-        <input id="TeamId" type="text" placeholder="Nhập tên...">
-      </form>
-
       <div class="details container-md">
         <div class="left">
           <div class="main">
@@ -144,6 +139,10 @@
           </div>
         </div>
         <div class="right">
+          <form class="form">
+            <input id="TeamId" type="text" placeholder="Nhập tên...">
+            <button id="TeamSubmit" class="fa fa-check"></button>
+          </form>
           <span>Tuyên Dương Tập Thể</span>
           <hr size="4" width="90%" color="#243a6f">  
           <h2 id="TeamName" style="margin-top: 1rem;">Tập Thể</h1>
@@ -159,27 +158,15 @@
         <div class="footer-center">
           <h3>LIÊN HỆ</h3>
           <div>
-            <span>
-              <i class="fas fa-map-marker-alt"></i>
-            </span>
             Ban Tuyên Giáo - Quận Ủy Bình Tân
           </div>
           <div>
-            <span>
-              <i class="far fa-envelope"></i>
-            </span>
             Email: binhtan@tphcm.gov.vn
           </div>
           <div>
-            <span>
-              <i class="fas fa-phone"></i>
-            </span>
             (028) 38 750 307
           </div>
           <div>
-            <span>
-              <i class="far fa-paper-plane"></i>
-            </span>
             521 Kinh Dương Vương, Phường An Lạc, Quận Bình Tân, Tp. Hồ Chí Minh
           </div>
         </div>

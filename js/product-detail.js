@@ -12,22 +12,13 @@ app.appendChild(container);
 */
 var data1 = [];
 var data2 = [];
-const urls= [
-    "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json",
-    "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json"
-  ];
-
-
-
-
+const urls= ["https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json","https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json"];
 urls.forEach(url => {
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
-
     request.onload = function () {
       // Begin accessing JSON data here
     var data = JSON.parse(this.response);
-    
     //console.log(data);
     if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json") {
         //console.log("url1");
@@ -40,41 +31,20 @@ urls.forEach(url => {
         //console.log(data2.length);
         document.getElementById("totalTeam").innerHTML = data2.length;
     }
-    
     }
-    
     request.send();
 });
 
-/*
-
-$(document).ready(function(){
-    $("#PersonSubmit").click(function(){
-        console.log("ok");
-        
-        data1.forEach(id => {
-            if (id.gsx$id.$t == ($("#PersonId").val()) ) {
-                console.log(id.gsx$name.$t);
-                document.getElementById("PersonName").innerHTML = id.gsx$name.$t;
-                document.getElementById("PersonYOB").innerHTML = ("Năm sinh: " + id.gsx$yob.$t);
-                document.getElementById("PersonPosition").innerHTML = ("Chức vụ: " + id.gsx$position.$t);
-                document.getElementById("PersonAction").innerHTML = ("Thành tích: " + id.gsx$action.$t);
-                document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + id.gsx$topic.$t);
-            }
-        });
-    });
-});
-*/
-
 $(document).ready(function(){
     $("#PersonId").on("keyup", function() {
+
         var searchFieldPerson = $(this).val().toLowerCase();
         if(searchFieldPerson === '')  {
             document.getElementById("PersonName").innerHTML = ("HỌ VÀ TÊN");
-            document.getElementById("PersonYOB").innerHTML = ("Năm sinh: ");
-            document.getElementById("PersonPosition").innerHTML = ("Chức vụ: ");
-            document.getElementById("PersonAction").innerHTML = ("Thành tích: ");
-            document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: ");
+            document.getElementById("PersonYOB").innerHTML = ("Năm sinh");
+            document.getElementById("PersonPosition").innerHTML = ("Chức vụ");
+            document.getElementById("PersonAction").innerHTML = ("");
+            document.getElementById("PersonTopic").innerHTML = ("");
             document.getElementById("PersonImg").src = ("./images/person.PNG");
             return;
         }
@@ -82,17 +52,22 @@ $(document).ready(function(){
 
         $.each(data1, function(key, val){
             if (val.gsx$name.$t.search(regexPerson) != -1) {
-                //console.log(val.gsx$name.$t);
                 document.getElementById("PersonName").innerHTML = val.gsx$name.$t;
                 document.getElementById("PersonYOB").innerHTML = ("Năm sinh: " + val.gsx$yob.$t);
                 document.getElementById("PersonPosition").innerHTML = ("Chức vụ: " + val.gsx$position.$t);
-                document.getElementById("PersonAction").innerHTML = ("Thành tích: " + val.gsx$action.$t);
-                document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + val.gsx$topic.$t);
-                document.getElementById("PersonImg").src = val.gsx$pic.$t;
-                ///console.log(val.gsx$pic.$t);
+                if ((val.gsx$topic.$t) != -1) {
+                    document.getElementById("PersonTopic").innerHTML = "";
+                } else document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + val.gsx$topic.$t);
+                $( "#PersonSubmit" ).click(function() {
+                    document.getElementById("PersonImg").src = val.gsx$pic.$t;
+                    document.getElementById("PersonAction").innerHTML = ("Thành tích: " + val.gsx$action.$t);
+                    $("#PersonId").val('');
+                  });
             }
           });
     });
+
+    
 
     $("#TeamId").on("keyup", function() {
         var searchFieldTeam = $(this).val().toLowerCase();
@@ -106,11 +81,12 @@ $(document).ready(function(){
 
         $.each(data2, function(key, val){
             if (val.gsx$org.$t.search(regexTeam) != -1) {
-                //console.log(val.gsx$org.$t);
                 document.getElementById("TeamName").innerHTML = val.gsx$org.$t;
-                document.getElementById("TeamTopic").innerHTML = ("Thành tích: " + val.gsx$topic.$t);
-                document.getElementById("TeamImg").src = val.gsx$pic.$t;
-                ///console.log(val.gsx$pic.$t);
+                $( "#TeamSubmit" ).click(function() {
+                    document.getElementById("TeamImg").src = val.gsx$pic.$t;
+                    document.getElementById("TeamTopic").innerHTML = ("Thành tích: " + val.gsx$topic.$t);
+                    $("#TeamId").val('');
+                  });
             }
           });
     });
