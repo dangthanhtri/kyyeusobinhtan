@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover" />
   <!-- Favicon -->
   <link rel="shortcut icon" href="./images/favicon-lotus.ico" type="image/x-icon">
   <!-- Box icons -->
@@ -12,7 +12,7 @@
 
   <!-- Custom StyleSheet -->
   <link rel="stylesheet" href="./css/styles.css" />
-  <title>Kỷ Yếu Số - Bình Tân</title>
+  <title>Kỷ Yếu Điện Tử - Bình Tân</title>
 </head>
 
 <body>
@@ -22,8 +22,8 @@
     <nav class="nav">
       <div class="navigation container">
         <div class="logo">
-          <a onclick="openMainScr()">
-            <img src="./images/lotus.png" style="width:60px">
+          <a onclick="switchView('mainScr')">
+            <img src="./images/logo.jpg" style="width: 120px;border-radius: 5px;">
           </a>
         </div>
         <div class="menu">
@@ -38,10 +38,25 @@
 
           <ul class="nav-list">
             <li class="nav-item">
-              <a class="nav-link scroll-link" onclick="openMainScr()">Trang Chủ</a>
+              <a class="nav-link scroll-link" onclick="switchView('mainScr')">Trang chủ</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link scroll-link">Giới thiệu</a>
+              <a class="nav-link scroll-link" onclick="switchView('introScr')">Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scroll-link" onclick="switchView('listPersonScr')">Gương cá nhân</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scroll-link" onclick="switchView('listTeamScr')">Gương tập thể</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scroll-link" onclick="">Gương “Dân vận khéo”</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scroll-link" onclick="">Gương “Người tốt – việc tốt”</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link scroll-link" onclick="">Gương “Phog trào thi đua yêu nước”</a>
             </li>
           </ul>
         </div>
@@ -51,15 +66,47 @@
         </div>
       </div>
     </nav>
-    <img src="./images/main-banner.jpg" style="width:100vw">
+    
   </header>
 
   <!-- Main -->
-  <main>
+  <main style="padding-top: 90px;">
     <!-- Featured -->
-    <section id="mainScr" class="section featured" >
+    <section id="mainScr" class="section featured" style="display: block;">
+      <img src="./images/main-banner.jpg" style="width:100vw">
       <div class="title">
-        <h1>Danh Mục Tuyên Dương</h1>
+        <h1>KỶ YẾU ĐIỆN TỬ</h1>
+      </div>
+
+      <div class="product-center container">
+        <div class="product">
+          <div class="product-header">
+            <img src="./images/news.jpg"  alt="">
+          </div>
+          <div class="product-footer">
+            <a class="btn" onclick="">Tin Tức</a>
+          </div>
+        </div>
+        <div class="product">
+          <div class="product-header">
+            <img src="./images/video.jpg" alt="">
+          </div>
+          <div class="product-footer">
+            <a class="btn" onclick="switchView('videoScr')">Video</a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; width: 100%;margin-top: 20px;">
+        <a class="btn2"  href="https://www.hcmcpv.org.vn/">Trang tin điện tử - Thành Ủy TP.HCM</a>
+        <a class="btn2" href="http://binhtan.hochiminhcity.gov.vn/">Trang tin điện tử - UBND Quận Bình Tân</a>
+        <a class="btn2" href="https://www.facebook.com/btgquanuybinhtan">Trang fanpage Ban Tuyên giáo Quận ủy Bình Tân</a>
+        <a class="btn2" href="https://www.facebook.com/NG%C6%AF%E1%BB%9CI-B%E1%BA%A2O-V%E1%BB%86-2142137062742989">Trang fanpage Người Bảo vệ</a>
+      </div>
+    </section>
+
+    <section id="GCT05Scr" class="section featured" style="display: none;">
+      <div class="title">
+        <h1>DANH MỤC TUYÊN DƯƠNG</h1>
       </div>
 
       <div class="product-center container">
@@ -78,7 +125,7 @@
               <i class="bx bxs-star"></i>
               <i class="bx bxs-star"></i>
             </div>
-            <a class="btn" onclick="openPersonScr()">Tìm Kiếm Cá Nhân</a>
+            <a class="btn" onclick="switchView('listPersonScr')">Tìm Kiếm Cá Nhân</a>
           </div>
         </div>
         <div class="product">
@@ -96,12 +143,42 @@
               <i class="bx bxs-star"></i>
               <i class="bx bxs-star"></i>
             </div>
-            <a class="btn" onclick="openTeamScr()">Tìm Kiếm Tập Thể</a>
+            <a class="btn" onclick="switchView('listTeamScr')">Tìm Kiếm Tập Thể</a>
           </div>
         </div>
       </div>
     </section>
 
+    <section id="listPersonScr" style="display: none;">
+      <input type="text" class="searchInput" id="PersonInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
+      <table class="searchTable">
+      <thead>
+      <tr >
+          <th style="width:10%;">Mã số</th>
+          <th style="width:40%;">Họ và Tên</th>
+          <th style="width:35%;">Đơn vị</th>
+          <th style="width:15%;">Năm sinh</th>
+        </tr>
+      </thead>
+        <tbody  id="personTable" >
+      </tbody>
+        </table>
+    </section>
+
+    <section id="listTeamScr" style="display: none;">
+      <input type="text" class="searchInput" id="TeamInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
+      <table class="searchTable">
+      <thead>
+      <tr >
+          <th style="width:10%;">Mã số</th>
+          <th style="width:90%;">Đơn vị</th>
+        </tr>
+      </thead>
+        <tbody  id="teamTable" >
+      </tbody>
+        </table>
+    </section>
+    
      <!-- Trang thông tin chi tiết Cá Nhân-->
      <section id="personScr" class="section product-detail" style="display: none;">
       <div class="details container-md">
@@ -110,18 +187,16 @@
             <img id="PersonImg" src="./images/person.PNG" alt="">
           </div>
         </div>
-        <div class="right">
-          <form class="form">
-            <input id="PersonId" type="text" placeholder="Nhập tên...">
-            <a class="btnSearch fa fa-check" id="PersonSubmit"></a>
-          </form>
-          <span>Tuyên Dương Cá Nhân</span>
+        <div class="right" style="margin-top: 1.8rem;">
+          
+          <span>Gương Cá Nhân</span>
           <hr size="4" width="90%" color="#243a6f"> 
           <h2 id="PersonName" style="margin-top: 1rem;">Họ và Tên</h2>
           <h3 id="PersonYOB" >Năm sinh</h2>
           <h3 id="PersonPosition">Chức vụ</h2>
           <div id="PersonAction" class="price"></div>
           <p id="PersonTopic"></p>
+          <button class="btnSearch" id="PersonSubmit" onclick="switchView('listPersonScr')">Trở lại danh sách</button>
         </div>
       </div>
     </section>
@@ -135,17 +210,51 @@
           </div>
         </div>
         <div class="right">
-          <form class="form">
-            <input id="TeamId" type="text" placeholder="Nhập tên...">
-            <a class="btnSearch fa fa-check" id="TeamSubmit"></a>
-          </form>
-          <span>Tuyên Dương Tập Thể</span>
+          
+          <span>Gương Tập Thể</span>
           <hr size="4" width="90%" color="#243a6f">  
           <h2 id="TeamName" style="margin-top: 1rem;">Tập Thể</h1>
           <p id="TeamTopic" style="color: #ff7c9c; text-align: justify;">Thành Tích</p>
+          <button class="btnSearch" id="TeamSubmit" onclick="switchView('listTeamScr')">Trở lại danh sách</button>
         </div>
       </div>
     </section>
+
+  <section id="introScr" >
+    <div id="slideshow">
+      <div>
+        <img src="images/Intro/gt1.jpg">
+      </div>
+      <div>
+        <img src="images/Intro/gt2.jpg">
+      </div>
+      <div>
+        <img src="images/Intro/gt3.jpg">
+      </div>
+      <div>
+        <img src="images/Intro/gt4.jpg">
+      </div>
+      <div>
+        <img src="images/Intro/gt5.jpg">
+      </div>
+    </div>
+    <p>Ngày 15/5/2016, Bộ Chính trị đã ban hành Chỉ thị số 05-CT/TW "Về đẩy mạnh học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh" (Chỉ thị 05). Mục đích của việc học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh là làm cho toàn Đảng, toàn dân, toàn quân ta nhận thức sâu sắc những nội dung cơ bản và giá trị to lớn của tư tưởng, đạo đức, phong cách Hồ Chí Minh; tiếp tục đưa việc học tập và làm theo Bác trở thành công việc tự giác, thường xuyên của mỗi cấp ủy, tổ chức đảng, chính quyền, đoàn thể các cấp và mỗi cán bộ, đảng viên; góp phần xây dựng Đảng trong sạch, vững mạnh về chính trị, tư tưởng, tổ chức và đạo đức, xây dựng đội ngũ cán bộ đủ năng lực, phẩm chất, ngang tầm nhiệm vụ, khắc phục, ngăn ngừa bệnh thành tích, hình thức, phô trương; xây dựng hình ảnh người cán bộ, đảng viên gần dân, sát dân, lắng nghe nhân dân, giản dị, khiêm tốn, trung thực, ngăn chặn, đẩy lùi suy thoái về tư tưởng chính trị, đạo đức, lối sống và những biểu hiện "tự diễn biến", "tự chuyển hóa" trong nội bộ. </p>
+    <p>Qua 5 năm triển khai thực hiện Chỉ thị 05/CT-TW của Bộ Chính trị, toàn Quận đã biểu dương, khen thưởng 754 tập thể, 1.124 cá nhân có thành tích tốt trong học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh. Bằng những việc làm cụ thể, thiết thực, các gương điển hình trong học tập và làm theo Bác đang từng ngày lan tỏa những mô hình, cách làm đầy tính nhân văn, vì cộng đồng, tác động tích cực đối với sự phát triển của quận, cũng như việc thực hiện nghị quyết đại hội đảng các cấp.</p>
+    <p>Nhằm tiếp tục nhân rộng những mô hình, giải pháp, cách làm mới, sáng tạo của các điển hình tiên tiến trong thực hiện Chỉ thị 05/CT-TW của Bộ Chính trị; tiếp tục động viên cán bộ, đảng viên, công chức, viên chức, lực lượng vũ trang và các tầng lớp nhân dân đẩy mạnh thi đua yêu nước, học và làm theo Bác bằng nhiều việc làm thiết thực, góp phần xây dựng Đảng, xây dựng hệ thống chính trị trong sạch, vững mạnh, phát triển kinh tế - xã hội, đảm bảo quốc phòng, an ninh, đóng góp xứng đáng vào sự phát triển chung của quận;</p>
+    <p>Ban Tuyên giáo Quận ủy trân trọng giới thiệu các tập thể, cá nhân tiêu biểu trong học tập và làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh giai đoạn 2016 - 2021 trên địa bàn quận Bình Tân.</p>
+  </section>
+
+  <section id="videoScr" style="display: none; text-align: center;">
+    <div>
+      <iframe  src="https://www.youtube.com/embed/Nunn2e3PBJM" allowFullScreen="false" height="240" width="320">
+      </iframe>
+      <iframe  src="https://www.youtube.com/embed/_aghWPzkB7M" allowFullScreen="false" height="240" width="320">
+      </iframe>
+      <iframe  src="https://www.youtube.com/embed/_aghWPzkB7M" allowFullScreen="false" height="240" width="320">
+      </iframe>
+      
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer id="footer" class="section footer">
@@ -154,20 +263,18 @@
         <div class="footer-center">
           <h3>LIÊN HỆ</h3>
           <div>
-            Ban Tuyên Giáo - Quận Ủy Bình Tân
+            Ban Tuyên giáo Quận ủy Bình Tân
           </div>
           <div>
-            Email: binhtan@tphcm.gov.vn
+            Email: btgqu.binhtan@tphcm.gov.vn
           </div>
           <div>
-            (028) 38 750 307
-          </div>
-          <div>
-            521 Kinh Dương Vương, Phường An Lạc, Quận Bình Tân, Tp. Hồ Chí Minh
+            Địa chỉ: 521 Kinh Dương Vương, phường An Lạc, quận Bình Tân, TpHCM
           </div>
         </div>
       </div>
     </div>
+
     </div>
   </footer>
   <!-- End Footer -->

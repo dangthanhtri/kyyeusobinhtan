@@ -57,21 +57,17 @@ links.map(link => {
 });
 */
 
-
-function openMainScr() {
-  document.getElementById("personScr").style.display = "none";
-  document.getElementById("mainScr").style.display = "block";
-  document.getElementById("teamScr").style.display = "none";
+function switchView(name){
+  $("#mainScr , #introScr, #videoScr, #GCT05Scr, #personScr , #teamScr, #listPersonScr, #listTeamScr").hide();
+  $("#"+name).show();
 }
 
-function openPersonScr() {
-  document.getElementById("personScr").style.display = "block";
-  document.getElementById("mainScr").style.display = "none";
-  document.getElementById("teamScr").style.display = "none";
-}
-
-function openTeamScr() {
-  document.getElementById("personScr").style.display = "none";
-  document.getElementById("mainScr").style.display = "none";
-  document.getElementById("teamScr").style.display = "block";
-}
+$("#slideshow > div:gt(0)").hide();
+setInterval(function() { 
+  $('#slideshow > div:first')
+  .fadeOut(800)
+  .next()
+  .fadeIn(800)
+  .end()
+  .appendTo('#slideshow');
+}, 3000);
