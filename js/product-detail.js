@@ -10,9 +10,15 @@ container.setAttribute('class', 'container');
 app.appendChild(logo);
 app.appendChild(container);
 */
+
+
 var data1 = [];
 var data2 = [];
-const urls= ["https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json","https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json"];
+var data3 = [];
+var data4 = [];
+const urls= ["https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json",
+"https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json",
+"https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/4/public/full?alt=json",];
 urls.forEach(url => {
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -56,18 +62,25 @@ urls.forEach(url => {
         var team = '';
         // ITERATING THROUGH OBJECTS
         $.each(data2, function (key, value) {
-            //CONSTRUCTION OF ROWS HAVING
-            // DATA FROM JSON OBJECT
-            team += '<tr>';
-            team += '<td>' + 
-                value.gsx$id.$t + '</td>';
-            team += '<td>' + 
-                value.gsx$org.$t + '</td>';
-            team += '</tr>';
+            document.getElementById("totalTeam").innerHTML
         });
         //INSERTING ROWS INTO TABLE 
         $('#teamTable').append(team);
         highlight_row_team();
+    } else if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/4/public/full?alt=json") {
+        data4 = (data.feed.entry);
+        var videos = '';
+        $.each(data4, function (key, value) {
+            //videos = '<iframe  src="' + value.gsx$link.$t + '" allowFullScreen="false" height="240" width="320"> </iframe>';
+            //document.getElementById("videoDiv").appendChild(x) = videos;
+
+            var x = document.createElement("IFRAME");
+            x.setAttribute("src", value.gsx$link.$t);
+            x.setAttribute("width", "320");
+            x.setAttribute("height", "240");
+            x.setAttribute("allowFullScree", "false")
+            document.getElementById('videosDiv').appendChild(x);
+        });
     }
     }
     request.send();
@@ -212,3 +225,4 @@ $(document).ready(function(){
 
 });
 */
+

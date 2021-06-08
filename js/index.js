@@ -58,8 +58,10 @@ links.map(link => {
 */
 
 function switchView(name){
-  $("#mainScr , #introScr, #videoScr, #GCT05Scr, #personScr , #teamScr, #listPersonScr, #listTeamScr").hide();
+  $("#mainScr , #introScr, #videoScr, #newsScr, #GCT05Scr, #personScr , #teamScr, #listPersonScr, #listTeamScr").hide();
   $("#"+name).show();
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+  return false;
 }
 
 $("#slideshow > div:gt(0)").hide();
