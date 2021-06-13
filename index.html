@@ -57,7 +57,7 @@
   <!-- Main -->
   <main style="padding-top: 90px;">
     <!-- Featured -->
-    <section id="mainScr" class="section featured" style="display: block;">
+    <section id="mainScr" class="section featured" style="display: none;">
       <img src="./images/main-banner.jpg" style="width:100vw">
       <div class="title">
         <h1>KỶ YẾU ĐIỆN TỬ</h1>
@@ -135,7 +135,7 @@
       <div class="product-center container">
         <div class="product">
           <div class="product-header">
-            <img src="./images/person.PNG"  alt="">
+            <img src="./images/Tab/ca-nhan-tieu-bieu.png"  alt="">
           </div>
           <div class="product-footer">
             <a href="#">
@@ -153,7 +153,7 @@
         </div>
         <div class="product">
           <div class="product-header">
-            <img src="./images/group.PNG" alt="">
+            <img src="./images/Tab/tap-the-tieu-bieu.png" alt="">
           </div>
           <div class="product-footer">
             <a href="#">
@@ -172,7 +172,7 @@
       </div>
     </section>
 
-    <section id="listPersonScr" style="display: none;">
+    <section style="display: none;">
       <input type="text" class="searchInput" id="PersonInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
       <table class="searchTable">
       <thead>
@@ -188,7 +188,7 @@
         </table>
     </section>
 
-    <section id="listTeamScr" style="display: none;">
+    <section style="display: none;">
       <input type="text" class="searchInput" id="TeamInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
       <table class="searchTable">
       <thead>
@@ -275,11 +275,26 @@
   <section id="newsScr" style="display: none;">
     <div id="Iframe-Liason-Sheet" class=" center-block-horiz">
       <div id="newsDiv" class="responsive-wrapper responsive-wrapper-wxh-550x2000">
-        <iframe src="https://docs.google.com/document/d/e/2PACX-1vSgOzx63GOyFBnir5pMadaBTt6sXeXIk9ciRc4J6Y-nsbWeP46MHa0zBJWDd9NxdB_QOogzNrCR_Uvn/pub?embedded=true"> 
-        </iframe>
+
       </div>
      </div>
   </section>
+
+  <section id="listPersonScr" style="text-align: center; display: none;">
+    <input type="text" onkeyup="ct05PersonSearch()" class="searchInput" id="ct05_PersonInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
+    <div id="ct05-person" class="show-container"></div>
+  </section>
+
+  <section id="listTeamScr" style="text-align: center; display: none;">
+    <input type="text" onkeyup="ct05TeamSearch()" class="searchInput" id="ct05_TeamInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
+    <div id="ct05-team" class="show-container"></div>
+  </section>
+
+  <section id="listNewsScr" style="text-align: center; display: block;">
+    <input type="text" onkeyup="newsSearch()" class="searchInput" id="newsInput" placeholder="Nhập bất cứ thông tin gì bạn biết..." title="Type in a name">
+    <div id="newsItem" class="show-container-news"></div>
+  </section>
+
 
   <!-- Footer -->
   <footer id="footer" class="section footer">

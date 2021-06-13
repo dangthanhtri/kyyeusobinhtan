@@ -58,7 +58,7 @@ links.map(link => {
 */
 
 function switchView(name){
-  $("#mainScr , #introScr, #videoScr, #newsScr, #GCT05Scr, #personScr , #teamScr, #listPersonScr, #listTeamScr").hide();
+  $("#mainScr , #introScr, #videoScr, #newsScr, #GCT05Scr, #personScr , #teamScr, #listPersonScr, #listTeamScr, #listNewsScr").hide();
   $("#"+name).show();
   $("html, body").animate({ scrollTop: 0 }, "slow");
   return false;

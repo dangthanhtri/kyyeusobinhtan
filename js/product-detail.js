@@ -1,23 +1,10 @@
-/*
-const app = document.getElementById('root');
-
-const logo = document.createElement('img');
-logo.src = 'logo.png';
-
-const container = document.createElement('div');
-container.setAttribute('class', 'container');
-
-app.appendChild(logo);
-app.appendChild(container);
-*/
-
-
 var data1 = [];
 var data2 = [];
 var data3 = [];
 var data4 = [];
 const urls= ["https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/1/public/full?alt=json",
 "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json",
+"https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/3/public/full?alt=json",
 "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/4/public/full?alt=json",];
 urls.forEach(url => {
     var request = new XMLHttpRequest();
@@ -36,23 +23,19 @@ urls.forEach(url => {
         var person = '';
         // ITERATING THROUGH OBJECTS
         $.each(data1, function (key, value) {
-            //CONSTRUCTION OF ROWS HAVING
-            // DATA FROM JSON OBJECT
-            person += '<tr>';
-            person += '<td>' + 
-                value.gsx$id.$t + '</td>';
-            person += '<td>' + 
-                value.gsx$name.$t + '</td>';
-            person += '<td>' + 
-                value.gsx$position.$t + '</td>';
-            person += '<td>' + 
-                value.gsx$yob.$t + '</td>';
-            person += '</tr>';
+            const card = document.createElement('div');
+            card.setAttribute('class', 'show-card');
+            card.setAttribute('onclick', 'ct05PersonDetail(this.id)');
+            card.setAttribute('id', value.gsx$name.$t);
+            const img = document.createElement('img');
+            img.src = value.gsx$pic.$t;
+            const h1 = document.createElement('h1');
+            h1.setAttribute('class', 'title-card');
+            h1.textContent = value.gsx$name.$t;
+            document.getElementById("ct05-person").appendChild(card);
+            card.appendChild(img);
+            card.appendChild(h1);
         });
-        //INSERTING ROWS INTO TABLE 
-        $('#personTable').append(person);
-        highlight_row_person();
-        
     } else if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/2/public/full?alt=json") {
         //console.log("url2");
         data2 = (data.feed.entry);
@@ -62,167 +45,125 @@ urls.forEach(url => {
         var team = '';
         // ITERATING THROUGH OBJECTS
         $.each(data2, function (key, value) {
-            document.getElementById("totalTeam").innerHTML
+            const card = document.createElement('div');
+            card.setAttribute('class', 'show-card');
+            card.setAttribute('onclick', 'ct05TeamDetail(this.id)');
+            card.setAttribute('id', value.gsx$org.$t);
+            const img = document.createElement('img');
+            img.src = value.gsx$pic.$t;
+            const h1 = document.createElement('h1');
+            h1.setAttribute('class', 'title-card');
+            h1.textContent = value.gsx$org.$t;
+            document.getElementById("ct05-team").appendChild(card);
+            card.appendChild(img);
+            card.appendChild(h1);
         });
-        //INSERTING ROWS INTO TABLE 
-        $('#teamTable').append(team);
-        highlight_row_team();
-    } else if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/4/public/full?alt=json") {
+    } 
+    else if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/3/public/full?alt=json") {
+        data3 = (data.feed.entry);
+        $.each(data3, function (key, value) {
+            const card = document.createElement('div');
+            card.setAttribute('class', 'show-card-news');
+            card.setAttribute('onclick', 'newsDetail(this.id)');
+            card.setAttribute('id', value.gsx$id.$t);
+            const h1 = document.createElement('h1');
+            h1.setAttribute('class', 'title-card');
+            h1.textContent = value.gsx$title.$t;
+            document.getElementById("newsItem").appendChild(card);
+            card.appendChild(h1);
+        });
+    }
+    else if (url == "https://spreadsheets.google.com/feeds/list/1ic-Kuy8TWAEc6u0IsareNm-wsZCgYtxJ-QHJbo_VIcw/4/public/full?alt=json") {
         data4 = (data.feed.entry);
         var videos = '';
         $.each(data4, function (key, value) {
-            //videos = '<iframe  src="' + value.gsx$link.$t + '" allowFullScreen="false" height="240" width="320"> </iframe>';
-            //document.getElementById("videoDiv").appendChild(x) = videos;
-
             var x = document.createElement("IFRAME");
             x.setAttribute("src", value.gsx$link.$t);
             x.setAttribute("width", "320");
             x.setAttribute("height", "240");
-            x.setAttribute("allowFullScree", "false")
+            x.setAttribute("allowFullScreen", "false")
             document.getElementById('videosDiv').appendChild(x);
         });
     }
     }
-    request.send();
-
-    $("#PersonInput").on("keyup", function() {
-        var value1 = $(this).val().toLowerCase();
-        $("#personTable tr").filter(function() {
-          $(this).toggle($(this).text()
-          .toLowerCase().indexOf(value1) > -1)
-        });
-    });
-    
-    $("#TeamInput").on("keyup", function() {
-        var value2 = $(this).val().toLowerCase();
-        $("#teamTable tr").filter(function() {
-          $(this).toggle($(this).text()
-          .toLowerCase().indexOf(value2) > -1)
-        });
-    });
-    
+    request.send();    
 });
 
 
+function ct05PersonSearch() {
+    var input, filter, cards, cardContainer, title, i;
+    input = document.getElementById("ct05_PersonInput");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("ct05-person");
+    cards = cardContainer.getElementsByClassName("show-card");
+    for (i = 0; i < cards.length; i++) {
+      title = cards[i].querySelector(".title-card");
+      if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+        cards[i].style.display = "";
+      } else {
+        cards[i].style.display = "none";
+      }
+    }
+  }
 
+function ct05PersonDetail(id) {
+    $.each(data1, function (key, val) {
+        if ((val.gsx$name.$t) == id) {
+            document.getElementById("PersonName").innerHTML = val.gsx$name.$t;
+            document.getElementById("PersonYOB").innerHTML = ("Năm sinh: " + val.gsx$yob.$t);
+            document.getElementById("PersonPosition").innerHTML = ("Chức vụ: " + val.gsx$position.$t);
+            document.getElementById("PersonImg").src = val.gsx$pic.$t;
+            document.getElementById("PersonAction").innerHTML = ("Thành tích: " + val.gsx$action.$t);
+            $("#PersonInput").val('');
+            if ((val.gsx$topic.$t) != -1) {
+                document.getElementById("PersonTopic").innerHTML = "";
+            } else document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + val.gsx$topic.$t);
+        }
+    });
+    switchView('personScr');
+}
 
-function highlight_row_person() {
-    var table1 = document.getElementById('personTable');
-    var cells = table1.getElementsByTagName('td');
-    
-    for (var i = 0; i < cells.length; i++) {
-        // Take each cell
-        var cell = cells[i];
-        // do something on onclick event for cell
-        cell.onclick = function () {
-            // Get the row id where the cell exists
-            var rowId = this.parentNode.rowIndex;
-            var rowSelected = table1.getElementsByTagName('tr')[rowId];
-            rowSelected.className += " selected";
-            var personId = rowSelected.cells[0].innerHTML;
-            $.each(data1, function(key, val){
-                if ((val.gsx$id.$t) == (personId - 1)) {                 
-                    document.getElementById("PersonName").innerHTML = val.gsx$name.$t;
-                    document.getElementById("PersonYOB").innerHTML = ("Năm sinh: " + val.gsx$yob.$t);
-                    document.getElementById("PersonPosition").innerHTML = ("Chức vụ: " + val.gsx$position.$t);
-                    document.getElementById("PersonImg").src = val.gsx$pic.$t;
-                    document.getElementById("PersonAction").innerHTML = ("Thành tích: " + val.gsx$action.$t);
-                    $("#PersonInput").val('');
-                    if ((val.gsx$topic.$t) != -1) {
-                        document.getElementById("PersonTopic").innerHTML = "";
-                    } else document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + val.gsx$topic.$t);
-                }
-            });
-            //openPersonScr();
-            switchView('personScr');
+function ct05TeamSearch() {
+    var input, filter, cards, cardContainer, title, i;
+    input = document.getElementById("ct05_TeamInput");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("ct05-team");
+    cards = cardContainer.getElementsByClassName("show-card");
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".title-card");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
         }
     }
 }
 
-function highlight_row_team() {
-    var table2 = document.getElementById('teamTable');
-    var cells = table2.getElementsByTagName('td');
-    
-    for (var i = 0; i < cells.length; i++) {
-        // Take each cell
-        var cell = cells[i];
-        // do something on onclick event for cell
-        cell.onclick = function () {
-            // Get the row id where the cell exists
-            var rowId = this.parentNode.rowIndex;
-            var rowSelected = table2.getElementsByTagName('tr')[rowId];
-            rowSelected.className += " selected";
-            var teamId = rowSelected.cells[0].innerHTML;
-            $.each(data2, function(key, val){
-                if ((val.gsx$id.$t) == (teamId - 1)) {                 
-                    document.getElementById("TeamName").innerHTML = val.gsx$org.$t;
-                    document.getElementById("TeamImg").src = val.gsx$pic.$t;
-                    document.getElementById("TeamTopic").innerHTML = ("Thành tích: " + val.gsx$topic.$t);
-                    $("#TeamInput").val('');
-                }
-            });
-            switchView('teamScr');
-        }
-    }
+function ct05TeamDetail(id) {
+    $.each(data2, function(key, val){
+      if ((val.gsx$org.$t) == id) {                 
+        document.getElementById("TeamName").innerHTML = val.gsx$org.$t;
+        document.getElementById("TeamImg").src = val.gsx$pic.$t;
+        document.getElementById("TeamTopic").innerHTML = ("Thành tích: " + val.gsx$topic.$t);
+        $("#TeamInput").val('');
+      }
+      });
+      switchView('teamScr');
 }
 
-/*
-$(document).ready(function(){
-    $("#PersonId").on("keyup", function() {
-
-        var searchFieldPerson = $(this).val().toLowerCase();
-        if(searchFieldPerson === '')  {
-            document.getElementById("PersonName").innerHTML = ("HỌ VÀ TÊN");
-            document.getElementById("PersonYOB").innerHTML = ("Năm sinh");
-            document.getElementById("PersonPosition").innerHTML = ("Chức vụ");
-            document.getElementById("PersonAction").innerHTML = ("");
-            document.getElementById("PersonTopic").innerHTML = ("");
-            document.getElementById("PersonImg").src = ("./images/person.PNG");
-            return;
-        }
-        var regexPerson = new RegExp(searchFieldPerson, "i");
-
-        $.each(data1, function(key, val){
-            if (val.gsx$name.$t.search(regexPerson) != -1) {
-                document.getElementById("PersonName").innerHTML = val.gsx$name.$t;
-                document.getElementById("PersonYOB").innerHTML = ("Năm sinh: " + val.gsx$yob.$t);
-                document.getElementById("PersonPosition").innerHTML = ("Chức vụ: " + val.gsx$position.$t);
-                if ((val.gsx$topic.$t) != -1) {
-                    document.getElementById("PersonTopic").innerHTML = "";
-                } else document.getElementById("PersonTopic").innerHTML = ("Mô hình giải pháp: " + val.gsx$topic.$t);
-                $( "#PersonSubmit" ).click(function() {
-                    document.getElementById("PersonImg").src = val.gsx$pic.$t;
-                    document.getElementById("PersonAction").innerHTML = ("Thành tích: " + val.gsx$action.$t);
-                    $("#PersonId").val('');
-                  });
-            }
-        });
-    });
-
-    
-
-    $("#TeamId").on("keyup", function() {
-        var searchFieldTeam = $(this).val().toLowerCase();
-        if(searchFieldTeam === '')  {
-            document.getElementById("TeamName").innerHTML = ("HỌ VÀ TÊN");
-            document.getElementById("TeamTopic").innerHTML = ("Thành tích");
-            document.getElementById("TeamImg").src = ("./images/group.PNG");
-            return;
-        }
-        var regexTeam = new RegExp(searchFieldTeam, "i");
-
-        $.each(data2, function(key, val){
-            if (val.gsx$org.$t.search(regexTeam) != -1) {
-                document.getElementById("TeamName").innerHTML = val.gsx$org.$t;
-                $( "#TeamSubmit" ).click(function() {
-                    document.getElementById("TeamImg").src = val.gsx$pic.$t;
-                    document.getElementById("TeamTopic").innerHTML = ("Thành tích: " + val.gsx$topic.$t);
-                    $("#TeamId").val('');
-                  });
-            }
-          });
-    });
-
-});
-*/
-
+function newsDetail(id) {
+    var y = document.getElementById('newsDiv');
+    var elements = y.getElementsByTagName("iframe");
+    while (elements.length) {
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+    $.each(data3, function(key, val){
+      if (val.gsx$id.$t == id) {                 
+          console.log(val.gsx$link.$t);
+        var x = document.createElement("IFRAME");
+            x.setAttribute("src", val.gsx$link.$t);
+            document.getElementById('newsDiv').appendChild(x);
+      }
+      });
+      switchView('newsScr');
+}
