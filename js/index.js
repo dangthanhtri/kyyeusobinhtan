@@ -73,3 +73,9 @@ setInterval(function() {
   .end()
   .appendTo('#slideshow');
 }, 3000);
+
+$(document).ready(function(){
+  $(".chosen-select").change(function(){
+    console.log($(".chosen-select").val());
+  });
+});
